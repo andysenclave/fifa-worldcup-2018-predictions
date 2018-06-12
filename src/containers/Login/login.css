@@ -1,0 +1,20 @@
+.login-component {
+  position: absolute;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  width: 80vw;
+  align-self: center;
+}
+.loading-logo {
+  background: url('../../assets/images/world_cup_logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 75vw;
+  height: 36vh;
+  background-position: center;
+}

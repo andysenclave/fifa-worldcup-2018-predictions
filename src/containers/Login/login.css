@@ -9,6 +9,7 @@
   text-align: center;
   width: 80vw;
   align-self: center;
+  margin: 0 auto;
 }
 .loading-logo {
   background: url('../../assets/images/world_cup_logo.png');

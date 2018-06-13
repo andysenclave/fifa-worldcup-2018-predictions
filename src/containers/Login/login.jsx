@@ -7,6 +7,7 @@ class Login extends Component {
     return (
         <section className="login-component">
           <div className="loading-logo"></div>
+          <section className="login-form"></section>
         </section>
     );
   }

@@ -5,28 +5,22 @@ import config from '../../config/app.config';
 const { api } = config;
 
 export const loginUser = ({ username, password }) => {
-  const user = { username, password };
-  const resource = api.userlogin;
-  return async (dispatch, getState) => {
+  let user = { username, password };
+  let successLogin = false;
+  const resource = api.userLogin;
 
+  return async (dispatch, getState) => {
     try {
       const response = await axios.post(resource, user);
-      console.log(response);
-      let loginUser = await response.data.results;
+      let loggedInUser = await response.data;
 
-      if(loginUser.constructor === Array) {
-        const { name, birth_year,   } = loginUser[0];
-        if(name === username && birth_year === password) {
-          user = {
-            name,
-            masterAccess: name === masterUser,
-            loggedIn: true
-          };
-          successLogin = true;
-        }
+      if(loggedInUser.user_id !== undefined) {
+        successLogin = true;
+        user = Object.assign({}, loggedInUser, { loggedIn: true, errorMessage: '' })
       }
     } catch (e) {
-      console.error("something went wrong : ", e);
+      const errorMessage = e.response.data;
+      user = { errorMessage };
     } finally {
       dispatch({
         type: USER_LOGIN,
@@ -37,8 +31,35 @@ export const loginUser = ({ username, password }) => {
   };
 };
 
-export const logoutUser = () => (dispatch) => {
-  dispatch({
-    type: USER_LOGOUT
-  });
-}; 
+export const signupUser = ({ username, password }) => {
+  let user = { username, password };
+  let successLogin = false;
+  const resource = api.userSignup;
+
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.put(resource, user);
+      let loggedInUser = await response.data;
+
+      if(loggedInUser.user_id !== undefined) {
+        successLogin = true;
+        user = Object.assign({}, loggedInUser, { loggedIn: true, errorMessage: '' })
+      }
+    } catch (e) {
+      const errorMessage = e.response.data;
+      user = { errorMessage };
+    } finally {
+      dispatch({
+        type: USER_SIGNUP,
+        payload: user
+      });
+      return successLogin;
+    }
+  };
+};
+
+// export const logoutUser = () => (dispatch) => {
+//   dispatch({
+//     type: USER_LOGOUT
+//   });
+// }; 

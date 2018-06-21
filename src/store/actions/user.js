@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { USER_LOGIN, USER_SIGNUP } from './action.types';
+import { USER_LOGIN, USER_SIGNUP, USER_LOGOUT } from './action.types';
+import { getFromLocalStorage } from '../../utils/storage.helper';
 import config from '../../config/app.config';
 
-const { api } = config;
+const { api, userKey } = config;
 
-export const loginUser = ({ username, password }) => {
+const loginUser = ({ username, password }) => {
   let user = { username, password };
   let successLogin = false;
   const resource = api.userLogin;
@@ -31,7 +32,7 @@ export const loginUser = ({ username, password }) => {
   };
 };
 
-export const signupUser = ({ username, password }) => {
+const signupUser = ({ username, password }) => {
   let user = { username, password };
   let successLogin = false;
   const resource = api.userSignup;
@@ -58,8 +59,23 @@ export const signupUser = ({ username, password }) => {
   };
 };
 
-// export const logoutUser = () => (dispatch) => {
-//   dispatch({
-//     type: USER_LOGOUT
-//   });
-// }; 
+const logoutUser = () => (dispatch) => {
+  dispatch({
+    type: USER_LOGOUT
+  });
+};
+
+const checkLocalUser = () => (dispatch) => {
+  const userInfo = getFromLocalStorage(userKey);
+  if(userInfo !== undefined) {
+    dispatch({
+      type: USER_LOGIN,
+      payload: userInfo
+    });
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export { checkLocalUser, loginUser, logoutUser, signupUser };

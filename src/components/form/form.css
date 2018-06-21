@@ -1,0 +1,20 @@
+.form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form > * {
+  flex: 0 0 85%;
+}
+
+button.participate-btn {
+  max-width: 60%;
+  margin: 35px 0;
+}
+
+p.common-error {
+  color: red;
+}

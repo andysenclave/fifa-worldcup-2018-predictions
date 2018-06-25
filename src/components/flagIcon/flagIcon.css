@@ -11,4 +11,6 @@ span.flag-icon > img {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  border: 3px solid #dbdbdb;
+  border-radius: 50%;
 }

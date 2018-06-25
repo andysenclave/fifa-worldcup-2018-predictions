@@ -6,6 +6,7 @@ import config from '../../config/app.config';
 const { api, userKey } = config;
 
 const loginUser = ({ username, password }) => {
+  let actionType = '';
   let user = { username, password };
   let successLogin = false;
   const resource = api.userLogin;
@@ -17,14 +18,16 @@ const loginUser = ({ username, password }) => {
 
       if(loggedInUser.user_id !== undefined) {
         successLogin = true;
-        user = Object.assign({}, loggedInUser, { loggedIn: true, errorMessage: '' })
+        user = Object.assign({}, loggedInUser, { loggedIn: true, errorMessage: '' });
+        actionType = USER_LOGIN;
       }
     } catch (e) {
       const errorMessage = e.response.data;
       user = { errorMessage };
+      actionType = USER_LOGOUT;      
     } finally {
       dispatch({
-        type: USER_LOGIN,
+        type: actionType,
         payload: user
       });
       return successLogin;

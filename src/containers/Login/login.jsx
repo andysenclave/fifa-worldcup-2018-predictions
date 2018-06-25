@@ -4,7 +4,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import { checkLocalUser, loginUser, signupUser } from '../../store/actions/user';
+import { loginUser, signupUser } from '../../store/actions/user';
 import Form from '../../components/form/form';
 import './login.css';
 
@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkLocalUser: () => dispatch(checkLocalUser()),
   loginUser: (loginData) => dispatch(loginUser(loginData)),
   signupUser: (signupData) => dispatch(signupUser(signupData))  
 });
@@ -31,10 +30,6 @@ class Login extends Component {
     this.handleChangeIndex = this.handleChangeIndex.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
     this.submitForm = this.submitForm.bind(this);
-  }
-  componentWillMount() {
-    const userLoggedIn = this.props.checkLocalUser();
-    if(userLoggedIn) this.props.history.push('/ok');
   }
   componentWillReceiveProps(newProps) {
     this.setState({
@@ -84,7 +79,7 @@ class Login extends Component {
           password: formData.password
         });
       }
-      if(successLogin) this.props.history.push('/ok');
+      if(successLogin) this.props.history.push('/overall');
     } else {
       if(formData.username.length === 0) formData.hasUsernameError = true;
       if(formData.password.length === 0) formData.hasPasswordError = true;

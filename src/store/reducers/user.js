@@ -1,5 +1,5 @@
 import { USER_LOGIN, USER_LOGOUT, USER_SIGNUP } from '../actions/action.types';
-import { saveInLocalStorage } from '../../utils/storage.helper';
+import { removeLocalStorage, saveInLocalStorage } from '../../utils/storage.helper';
 import config from '../../config/app.config';
 
 const initialState = {
@@ -22,7 +22,7 @@ const userReducer = (state = initialState, { type, payload }) => {
       return currentState;
     }
     case USER_LOGOUT: {
-      saveInLocalStorage(userKey, initialState);
+      removeLocalStorage(userKey);
       return initialState; 
     }
     case USER_SIGNUP: {

@@ -1,0 +1,13 @@
+section.prediction-wrapper {
+  display: flex;
+  top: 0;
+  position: absolute;
+  align-self: center;
+  width: 100vw;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.prediction-wrapper .groups-container {
+  flex: 1;
+}

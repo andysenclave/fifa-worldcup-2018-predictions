@@ -1,8 +1,8 @@
 const config = {
   api: {
-    userLogin: '/users/login',
-    userSignup: '/users/signup',
-    getGroups: '/matches/groups'
+    userLogin: '/api/users/login',
+    userSignup: '/api/users/signup',
+    getGroups: '/api/matches/groups'
   },
   userKey: 'fifa-prediction-user',
   secretKey: 'fifa18WorldCup'

@@ -1,0 +1,31 @@
+.login-component {
+  position: absolute;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  width: 80vw;
+  align-self: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.loading-logo {
+  background: url('../../assets/images/world_cup_logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 75vw;
+  height: 36vh;
+  background-position: center;
+}
+
+section.morph-btn-form {
+  display: flex;
+  background: #ffffffad;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0px 5px 18px -2px #0f0f0fb8;
+  font-size: 1.2em;
+}
